@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { ENV } from './config/env.js';
+import { CONNECT_DB } from './config/connect.js';
 
 const START_SERVER = () => {
     const app = express();
@@ -28,8 +29,9 @@ const START_SERVER = () => {
 (
     async () => {
         try {
-            // Connecting Database
-            // Connected Database
+            console.log('1. Connecting Database ...');
+            await CONNECT_DB();
+            console.log('2. Connected Database');
             START_SERVER();
         } catch (error) {
             console.log(error);
